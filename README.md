@@ -1,25 +1,24 @@
-# test
+## 项目名称
+```     
+win10 plus
+```
 
-## Project setup
+## 作者
+```
+小猿
+```
+
+## 下载项目相关模块
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## 运行项目
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+## 打包项目
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# win10plus
