@@ -1,6 +1,6 @@
-# win10 plus in Vue2
+# <span style="color: #3399ff;">win10 plus in Vue2<span>
 
-作者    小猿   
+作者    <span style="color: #ff6633; font-weight: bold;">小猿<span>   
 
 这个开源项目旨在使用 Vue2，CSS（LESS）和JS等标准Web技术在Web上复制Windows 10（额外添加一些交互动画）桌面体验。
 
