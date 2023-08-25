@@ -1,4 +1,4 @@
-# win10 plus in Vue2 ![alt 本地图片](./src/assets/application/cdn.png)
+# win10 plus in Vue2
 
 作者    小猿 :monkey_face:   
 
@@ -10,7 +10,11 @@
 
 ## 该项目仍在进行中
 
-项目在线体验地址：[https://www.apestudio.asia/win10plus/](https://www.apestudio.asia/win10plus/)
+项目在线体验地址：[https://www.apestudio.asia/win10plus/](https://www.apestudio.asia/win10plus/)  
+
+![alt 本地图片](./images/1.png)
+![alt 本地图片](./images/2.png)
+![alt 本地图片](./images/3.png)
 
 ## 已实现的功能
 
