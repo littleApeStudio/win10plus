@@ -1,0 +1,7 @@
+/* 应用程序头部图标 */
+@import url("./application/index.css");
+
+.iconfont {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
