@@ -68,6 +68,18 @@ export default {
           event: "application",
         },
         {
+          icon: require("@/assets/application/github.png"),
+          name: "github",
+          event: "application",
+          value: "AppGames",
+        },
+        {
+          icon: require("@/assets/application/xyzjkys.png"),
+          name: "小猿组件库（原生）",
+          event: "application",
+          value: "AppGames",
+        },
+        {
           icon: require("@/assets/application/game.png"),
           name: "游戏机",
           event: "application",
@@ -280,6 +292,11 @@ export default {
           line-height: 20px;
           font-size: 12px;
           color: #ffffff;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
 
