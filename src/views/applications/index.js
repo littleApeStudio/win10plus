@@ -1,9 +1,7 @@
-import thisComputer from '@/views/applications/apps/thisComputer.vue'
-import games from '@/views/applications/apps/games.vue'
+import gamesApp from '@/views/applications/apps/game/index'
 
 const components = [
-    thisComputer,
-    games,
+    gamesApp,
 ]
 
 
@@ -11,8 +9,8 @@ const apps = (Vue) => {
     if (!Vue) {
         window.Vue = Vue = _Vue
     }
-    components.forEach((component, i) => {
-        Vue.component(component.name, component);
+    components.forEach((item, i) => {
+        Vue.use(item);
     })
 }
 export default apps

@@ -23,3 +23,11 @@ export const desktopConfig = reactive({
         event: ''
     }
 })
+
+
+
+export const openedApp = reactive({
+    // 打开的应用程序合集
+    apps: [
+    ]
+})

@@ -16,6 +16,11 @@ Vue.use(apps)
 import lottie from "lottie-web";
 Vue.prototype.$lottie = lottie;
 
+// 应用程序相关逻辑处理
+import appConfig from "@/utils/appConfig";
+Vue.prototype.$appConfig = appConfig;
+
+
 new Vue({
   router,
   render: (h) => h(App),

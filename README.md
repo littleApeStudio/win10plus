@@ -1,8 +1,8 @@
 # win10 plus in Vue2
 
-作者    <span style="color: #3399ff">刘先生</span> :monkey_face:   
+作者    刘先生 :monkey_face:   
 
-这个开源项目旨在使用 Vue2，CSS（LESS）和JS等标准Web技术在Web上复制Windows 10（额外添加一些交互动画）桌面体验。
+这个开源项目旨在使用 Vue2，CSS（LESS）和JS等标准Web技术在Web上复制Windows 10（之所以叫win10 Plus 是因为在win10的基础上添加了一些交互动画，使其操作看起来更加丝滑）桌面体验。
 
 ## 提示
 
@@ -28,8 +28,8 @@
 	- [x] 可拖动窗口
 	- [x] 可调整窗口的大小
 	- [x] 全屏 / 非全屏窗口切换
+	- [x] 窗口最小化切换
 * 已经完成的 '应用程序'
-	- [x] 此电脑
 	- [x] 游戏机
 
 ## 引用及技术

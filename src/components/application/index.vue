@@ -1,12 +1,23 @@
 <template>
   <div
     ref="application"
-    :class="maximize ? 'application application-full' : 'application'"
+    :class="
+      maximize
+        ? minimize.is
+          ? 'application application-full application-min'
+          : 'application application-full'
+        : minimize.is
+        ? 'application application-min'
+        : 'application'
+    "
     style="top: 25%; left: 25%"
     :style="
       winAnimation
-        ? 'transition: all 0.2s;z-index: ' + zIndex
-        : 'z-index: ' + zIndex
+        ? 'transition: all 0.35s;z-index: ' +
+          zIndex +
+          ';--minleft:' +
+          minimize.left
+        : 'z-index: ' + zIndex + ';--minleft: ' + minimize.left
     "
   >
     <div class="resize">
@@ -39,7 +50,9 @@
             @mousedown.stop="moving = false"
             @click="level"
           >
-            <div class="mini"><span class="iconfont">&#xea6a;</span></div>
+            <div class="mini" @click.stop="mins">
+              <span class="iconfont">&#xea6a;</span>
+            </div>
             <div class="big" @click.stop="maximize = !maximize">
               <span v-if="maximize" class="iconfont">&#xea6b;</span>
               <span v-else class="iconfont">&#xe60d;</span>
@@ -70,6 +83,15 @@ export default {
     // 默认头部
     defaultHeader: {
       default: null,
+    },
+    // 最小化
+    minimize: {
+      default: () => {
+        return {
+          is: false,
+          left: null,
+        };
+      },
     },
   },
 
@@ -102,7 +124,14 @@ export default {
       this.$emit("level");
       setTimeout(() => {
         this.winAnimation = false;
-      }, 150);
+      }, 350);
+    },
+    "minimize.is"(e) {
+      this.winAnimation = true;
+      this.$emit("level");
+      setTimeout(() => {
+        this.winAnimation = false;
+      }, 350);
     },
   },
 
@@ -205,6 +234,10 @@ export default {
     // 关闭程序
     close() {
       this.$emit("close");
+    },
+    // 小化程序
+    mins() {
+      this.$emit("mins");
     },
     // 监听鼠标右键事件
     applicationMenu(e, f) {
@@ -418,9 +451,10 @@ export default {
   position: fixed;
   width: 50%;
   height: 50%;
+  user-select: none;
+  cursor: default;
 
   // 设置拖动元素
-
   .resize {
     .resize-top,
     .resize-bottom {
@@ -679,6 +713,30 @@ export default {
     width: 100% !important;
     height: calc(100% - 40px) !important;
     border-radius: 0px !important;
+  }
+}
+
+.application-min {
+  width: 0 !important;
+  height: 0 !important;
+  top: calc(100vh - 40px) !important;
+  left: var(--minleft) !important;
+  opacity: 0;
+  border-radius: 50% !important;
+
+  .resize-top,
+  .resize-bottom,
+  .resize-left,
+  .resize-right,
+  .resize-topLeft,
+  .resize-topRight,
+  .resize-bottomLeft,
+  .resize-bottomRight,
+  .resize-leftTop,
+  .resize-leftBottom,
+  .resize-rightTop,
+  .resize-rightBottom {
+    display: none !important;
   }
 }
 </style>

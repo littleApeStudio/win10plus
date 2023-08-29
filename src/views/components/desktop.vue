@@ -18,23 +18,14 @@
         </div>
       </div>
     </div>
-    <component
-      :class="item.close ? 'application-close' : 'application'"
-      v-for="(item, index) in openedApp"
-      :key="index + item"
-      :is="item.app"
-      :z-index="item.zIndex"
-      @level="topping(index)"
-      @close="closeApp(index)"
-    ></component>
   </div>
 </template>
 
 <script>
 // 面板数据
 import panelDatas from "@/utils/panels";
-// 桌面配置
-import { desktopConfig } from "@/utils/store";
+// vuex -- store
+import { desktopConfig, openedApp } from "@/utils/store";
 export default {
   name: "Desktop",
 
@@ -83,12 +74,12 @@ export default {
           icon: require("@/assets/application/game.png"),
           name: "游戏机",
           event: "application",
-          value: "AppGames",
+          value: "games",
         },
       ],
       // 桌面图标单机事件
       desktopClick: null,
-      openedApp: [],
+      // 应用层级
       zIndex: 5,
     };
   },
@@ -115,55 +106,47 @@ export default {
   },
 
   methods: {
-    // 打开程序
-    openApp(e) {
-      let opens = this.openedApp;
-      // 判断是否已经打开程序
-      let res = opens.find(isOpen);
-      function isOpen(item) {
-        return item.app === e.value;
-      }
-      // 否则
-      if (!res) {
-        setTimeout(() => {
-          let opened = {
-            zIndex: this.setLevel(),
-            app: e.value,
-          };
-          opens.push(opened);
-          this.openedApp = opens;
-        }, 100);
-      }
-      // 已经打开app了
-      else {
-        let index = null;
-        let ary = opens.slice();
-        for (let i = 0; i < ary.length; i++) {
-          if (ary[i].app === e.value) {
-            index = i;
+    // 打开应用程序
+    async openApp(e) {
+      let event = e.event;
+      let value = e.value;
+      // 不同类型应用程序的处理
+      switch (event) {
+        default:
+          return;
+        case "application":
+          // 判断程序是否已经打开
+          let res = await this.$appConfig.getOpened(e.value);
+          if (!res) {
+            // 具体应用程序的处理
+            switch (value) {
+              default:
+                return;
+              case "games":
+                openedApp.apps.push(e);
+                this.$gamesApp({
+                  zIndex: this.setZindex(),
+                });
+            }
+          } else {
+            // 获取当前打开的应用程序的下标
+            let index = await this.$appConfig.getOpenedIndex(e.value);
+            switch (e.value) {
+              default:
+                return;
+              case "games":
+                this.$gamesApp({
+                  zIndex: this.setZindex(),
+                  topping: true,
+                });
+            }
           }
-          break;
-        }
-        console.log(index);
       }
-    },
-    // 前置app
-    topping(e) {
-      this.openedApp[e].zIndex = this.setLevel();
     },
     // 设置层级
-    setLevel() {
-      this.zIndex++;
+    setZindex() {
+      this.zIndex += 1;
       return this.zIndex;
-    },
-    // 关闭程序
-    closeApp(i) {
-      let app = this.openedApp[i];
-      app.close = true;
-      this.$set(this.openedApp, i, app);
-      setTimeout(() => {
-        this.openedApp.splice(i, 1);
-      }, 200);
     },
     // 计算桌面设置
     setDesktopConfig(e) {
