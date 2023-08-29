@@ -131,6 +131,15 @@ export default {
               left: (index + 2) * 48 + "px",
             },
           });
+          break;
+        case "computer":
+          this.$computerApp({
+            minimize: {
+              is: true,
+              left: (index + 2) * 48 + "px",
+            },
+          });
+          break;
       }
     },
   },

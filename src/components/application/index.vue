@@ -721,7 +721,6 @@ export default {
   height: 0 !important;
   top: calc(100vh - 40px) !important;
   left: var(--minleft) !important;
-  opacity: 0;
   border-radius: 50% !important;
 
   .resize-top,

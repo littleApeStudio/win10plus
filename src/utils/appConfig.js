@@ -34,12 +34,17 @@ const close = function (e) {
 
 // 当前置顶程序的 tabbar 图标样式
 const topTabIcon = async function (e, is) {
-    let index = await getOpenedIndex(e)
-    for (let i = 0; i < apps.length; i++) {
-        if (index !== i) {
+    if (is) {
+        for (let i = 0; i < apps.length; i++) {
             apps[i].now = false
-        } else {
-            apps[i].now = is ? false : true
+        }
+    } else {
+        for (let i = 0; i < apps.length; i++) {
+            if (apps[i].value !== e) {
+                apps[i].now = false
+            } else {
+                apps[i].now = true
+            }
         }
     }
 }

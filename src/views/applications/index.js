@@ -1,7 +1,9 @@
 import gamesApp from '@/views/applications/apps/game/index'
+import computerApp from '@/views/applications/apps/thisComputer/index'
 
 const components = [
     gamesApp,
+    computerApp
 ]
 
 

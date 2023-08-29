@@ -41,7 +41,7 @@ export default {
           icon: require("@/assets/application/cdn.png"),
           name: "此电脑",
           event: "application",
-          value: "AppThisComputer",
+          value: "computer",
         },
         {
           icon: require("@/assets/application/wl.png"),
@@ -127,6 +127,13 @@ export default {
                 this.$gamesApp({
                   zIndex: this.setZindex(),
                 });
+                break;
+              case "computer":
+                openedApp.apps.push(e);
+                this.$computerApp({
+                  zIndex: this.setZindex(),
+                });
+                break;
             }
           } else {
             // 获取当前打开的应用程序的下标
@@ -139,6 +146,13 @@ export default {
                   zIndex: this.setZindex(),
                   topping: true,
                 });
+                break;
+              case "computer":
+                this.$computerApp({
+                  zIndex: this.setZindex(),
+                  topping: true,
+                });
+                break;
             }
           }
       }
